@@ -23,3 +23,10 @@ services:
       - /app/node_modules # Prevents overwriting `node_modules`
     command: ["npm", "run", "dev"] # Hot reload enabled in dev mode
 ```
+
+### Command to see running containers
+- `docker ps`
+
+### Command to see logs of a container
+
+- `docker logs -f a5b9034f9052`

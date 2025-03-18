@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+
+  landing-page:
+    build:
+      context: ../frontend/landing-page
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../frontend/landing-page:/app # Mount source code for hot reload
+      - /app/node_modules # Prevent overwriting node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+    networks:
+      - mynetwork
+
+  dashboard:
+    build:
+      context: ../frontend/user-dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../frontend/user-dashboard:/app # Mount source code for hot reload
+      - /app/node_modules # Prevent overwriting node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
